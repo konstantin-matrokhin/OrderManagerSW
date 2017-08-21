@@ -26,7 +26,7 @@ public class TableLoader {
 
     public TableLoader() {
         tableForm = new TableForm();
-        db = new DBProvider();
+        db = OrderManager.getDB();
         initTable();
         initBtnActions();
         loadDB();
