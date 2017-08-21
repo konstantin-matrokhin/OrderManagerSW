@@ -33,7 +33,6 @@ public class OMSettings {
     public static synchronized Properties $() {
         return OMSettings.get().props;
     }
-
     public static synchronized OMSettings get() {
         return instance == null ? instance = new OMSettings() : instance;
     }

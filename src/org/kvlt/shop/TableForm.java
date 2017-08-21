@@ -31,6 +31,7 @@ public class TableForm extends JFrame {
 
         setContentPane(tablePane);
         Dimension paneDim = new Dimension(W, H);
+        registerListeners();
         setSize(paneDim);
         setPreferredSize(paneDim);
         setLocationRelativeTo(null);
@@ -38,14 +39,27 @@ public class TableForm extends JFrame {
         setTitle(TITLE);
         setMinimumSize(new Dimension(1024, 600));
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+    }
+
+    private void registerListeners() {
         btnAdd.addActionListener(e -> {
             AdditionForm dialog = new AdditionForm();
             dialog.pack();
             dialog.setVisible(true);
         });
         btnRemove.addActionListener(e -> {
-            JOptionPane.showConfirmDialog(null,
+            int currentRow = getTable().getSelectedRow();
+            Log.$(currentRow);
+            if (currentRow == -1) return;
+
+            int result = JOptionPane.showConfirmDialog(null,
                     "Вы действительно хотите удалить этого клиента из таблицы?");
+            if (result == JOptionPane.YES_OPTION) {
+                int removeID = Integer.parseInt(getTable().getValueAt(currentRow, 0).toString());
+                OrderManager.getDB().query("DELETE FROM clients WHERE id=" + removeID);
+                OrderManager.getTableLoader().loadDB();
+            }
         });
     }
 

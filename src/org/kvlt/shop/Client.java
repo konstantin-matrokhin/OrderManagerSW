@@ -1,6 +1,5 @@
 package org.kvlt.shop;
 
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
@@ -9,15 +8,13 @@ public class Client {
     public Client(String name, String number, String address, String social) {
         try {
             Statement s = OrderManager.getDB().getConnection().createStatement();
+            int id = s.executeQuery("SELECT * FROM clients ORDER BY id DESC LIMIT 1").getInt("id") + 1;
+            String code = generateCode(id, number);
             s.execute(
                     "INSERT INTO clients " +
                             "(name, number, address, code, social) " +
-                            "VALUES ('" + name + "', '" + number + "', '" + address + "', '00000', '" + social + "')"
+                            "VALUES ('" + name + "', '" + number + "', '" + address + "', '" + code + "', '" + social + "')"
             );
-            ResultSet r = s.executeQuery("SELECT id FROM clients WHERE number='" + number +"'");
-            int id = r.getInt("id");
-            String code = generateCode(id, number);
-            s.execute("UPDATE clients SET code='" + code + "' WHERE id='" + id + "'");
             s.close();
             OrderManager.getTableLoader().loadDB();
         } catch (SQLException e) {

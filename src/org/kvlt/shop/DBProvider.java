@@ -2,6 +2,7 @@ package org.kvlt.shop;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.Statement;
 
 public class DBProvider {
 
@@ -40,7 +41,7 @@ public class DBProvider {
             conn.createStatement().executeQuery("" +
                     "CREATE TABLE IF NOT EXISTS [" + tableName + "] (\n" +
                     "[id] INTEGER  PRIMARY KEY AUTOINCREMENT NOT NULL,\n" +
-                    "[name] VARCHAR(100)  UNIQUE NOT NULL,\n" +
+                    "[name] VARCHAR(100)  NOT NULL,\n" +
                     "[number] VARCHAR(15)  UNIQUE NOT NULL,\n" +
                     "[orders] TEXT  NULL,\n" +
                     "[address] VARCHAR(200)  NOT NULL,\n" +
@@ -77,13 +78,14 @@ public class DBProvider {
         return conn;
     }
 
-//    public void query(String q) {
-//        try {
-//            Statement s = conn.createStatement();
-//            s.execute(q);
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//    }
+    public boolean query(String q) {
+        try {
+            Statement s = conn.createStatement();
+            return s.execute(q);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
 
 }
