@@ -56,7 +56,7 @@ public class DBProvider {
         try {
             conn.createStatement().executeQuery(
                     "INSERT INTO [clients] (id, name, number, address, code) VALUES" +
-                    "(1, 'Матрохин К. В.', '79994664221', 'Краснообск 113', '5001ab')");
+                    "(1, 'toster username', '8768532423423', 'default city', '5001ab')");
         } catch (Exception e) {
 
         }
