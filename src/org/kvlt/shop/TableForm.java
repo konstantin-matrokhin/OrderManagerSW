@@ -11,6 +11,7 @@ public class TableForm extends JFrame {
 
     private static final int W = 1024;
     private static final int H = 600;
+    private static final String TITLE = "Таблица клиентов — " + OMSettings.$().getProperty("name");
 
     private JButton btnSearch;
     private JTextField fieldSearch;
@@ -34,6 +35,7 @@ public class TableForm extends JFrame {
         setPreferredSize(paneDim);
         setLocationRelativeTo(null);
         setVisible(true);
+        setTitle(TITLE);
         setMinimumSize(new Dimension(1024, 600));
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         btnAdd.addActionListener(e -> {

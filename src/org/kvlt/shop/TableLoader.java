@@ -75,6 +75,8 @@ public class TableLoader {
                         id, name, number, orders, address, referals, code, social
                 });
             }
+            r.close();
+            s.close();
             Log.$("База данных загружена!");
         } catch (SQLException e) {
             e.printStackTrace();

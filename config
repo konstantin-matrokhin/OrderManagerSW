@@ -1,4 +1,1 @@
-title=a
-driver=sqlite
-db=clients.db
-log=true
+name=Магазинdriver=sqlitedb=clients.dblog=true

@@ -32,7 +32,7 @@ public class DBProvider {
 
         connect();
         initDB();
-        testRow();
+        testRow(); // TODO: remove
     }
 
     private void initDB() {
@@ -47,7 +47,7 @@ public class DBProvider {
                     "[referals] TEXT  NULL,\n" +
                     "[code] VARCHAR(32)  UNIQUE NOT NULL,\n" +
                     "[social] VARCHAR(64)  NULL\n" +
-                    ")");
+                    ")").close();
         } catch (Exception e) {
 
         }
@@ -57,7 +57,7 @@ public class DBProvider {
         try {
             conn.createStatement().executeQuery(
                     "INSERT INTO [clients] (id, name, number, address, code) VALUES" +
-                    "(1, 'toster username', '8768532423423', 'default city', '5001ab')");
+                    "(1, 'toster username', '8768532423423', 'default city', '5001ab')").close();
         } catch (Exception e) {
 
         }

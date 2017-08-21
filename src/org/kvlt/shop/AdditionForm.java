@@ -53,15 +53,21 @@ public class AdditionForm extends JDialog {
 
     private void addClient() {
         String name = inputName.getText().trim();
-        String number = inputNumber.getText().trim();
+        String number = inputNumber.getText().trim().replaceAll("\\s+", "");
         String address = inputAddress.getText().trim();
         String social = inputSocial.getText().trim();
+
+        if (name.isEmpty() || number.isEmpty() || address.isEmpty() || social.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Заполните все поля!");
+            return;
+        }
+
         new Client(name, number, address, social);
+        dispose();
     }
 
     private void onOK() {
         addClient();
-        dispose();
     }
 
     private void onCancel() {
