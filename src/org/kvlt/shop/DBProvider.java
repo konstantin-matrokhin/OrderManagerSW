@@ -6,6 +6,7 @@ import java.sql.DriverManager;
 public class DBProvider {
 
     private String driver;
+    private String tableName = "clients";
 
     private String url;
     private String host;
@@ -37,7 +38,7 @@ public class DBProvider {
     private void initDB() {
         try {
             conn.createStatement().executeQuery("" +
-                    "CREATE TABLE IF NOT EXISTS [clients] (\n" +
+                    "CREATE TABLE IF NOT EXISTS [" + tableName + "] (\n" +
                     "[id] INTEGER  PRIMARY KEY AUTOINCREMENT NOT NULL,\n" +
                     "[name] VARCHAR(100)  UNIQUE NOT NULL,\n" +
                     "[number] VARCHAR(15)  UNIQUE NOT NULL,\n" +

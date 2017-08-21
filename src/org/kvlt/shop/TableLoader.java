@@ -52,10 +52,15 @@ public class TableLoader {
         model.setColumnIdentifiers(titles);
     }
 
-    private void loadDB() {
+    public TableForm getTableForm() {
+        return tableForm;
+    }
+
+    public void loadDB() {
+        model.setRowCount(0);
         try {
             Statement s = db.getConnection().createStatement();
-            ResultSet r = s.executeQuery("SELECT * FROM clients");
+            ResultSet r = s.executeQuery("SELECT * FROM clients ORDER BY id DESC");
             while (r.next()) {
                 int id = r.getInt("id");
                 String name = r.getString("name");

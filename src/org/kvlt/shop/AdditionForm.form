@@ -47,7 +47,7 @@
               </component>
             </children>
           </grid>
-          <component id="1d0a6" class="javax.swing.JButton" binding="добавитьТоварыButton" default-binding="true">
+          <component id="1d0a6" class="javax.swing.JButton" binding="btnAddGoodies">
             <constraints>
               <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
             </constraints>
@@ -73,7 +73,7 @@
             <properties/>
             <border type="none"/>
             <children>
-              <component id="7bd02" class="javax.swing.JTextField" binding="textField1" default-binding="true">
+              <component id="7bd02" class="javax.swing.JTextField" binding="inputName">
                 <constraints>
                   <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                     <preferred-size width="150" height="-1"/>
@@ -113,7 +113,7 @@
                   <text value="Код"/>
                 </properties>
               </component>
-              <component id="ec579" class="javax.swing.JTextField" default-binding="true">
+              <component id="ec579" class="javax.swing.JTextField" binding="inputNumber">
                 <constraints>
                   <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                     <preferred-size width="150" height="-1"/>
@@ -121,7 +121,7 @@
                 </constraints>
                 <properties/>
               </component>
-              <component id="2f31e" class="javax.swing.JTextField" default-binding="true">
+              <component id="2f31e" class="javax.swing.JTextField" binding="inputAddress">
                 <constraints>
                   <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                     <preferred-size width="150" height="-1"/>
@@ -129,13 +129,15 @@
                 </constraints>
                 <properties/>
               </component>
-              <component id="7b112" class="javax.swing.JTextField" default-binding="true">
+              <component id="7b112" class="javax.swing.JTextField" binding="inputCode">
                 <constraints>
                   <grid row="3" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                     <preferred-size width="150" height="-1"/>
                   </grid>
                 </constraints>
-                <properties/>
+                <properties>
+                  <enabled value="false"/>
+                </properties>
               </component>
               <component id="35eb5" class="javax.swing.JLabel">
                 <constraints>
@@ -145,7 +147,7 @@
                   <text value="Соц. сеть"/>
                 </properties>
               </component>
-              <component id="bd880" class="javax.swing.JTextField" binding="textField2" default-binding="true">
+              <component id="bd880" class="javax.swing.JTextField" binding="inputSocial">
                 <constraints>
                   <grid row="4" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                     <preferred-size width="150" height="-1"/>
