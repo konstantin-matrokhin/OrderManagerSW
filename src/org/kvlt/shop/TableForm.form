@@ -9,6 +9,7 @@
       <inheritsPopupMenu value="false"/>
       <minimumSize width="1024" height="600"/>
       <name value="Таблица"/>
+      <preferredSize width="1024" height="600"/>
     </properties>
     <border type="none"/>
     <children>

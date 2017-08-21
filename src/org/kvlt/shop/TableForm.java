@@ -9,6 +9,9 @@ import java.awt.*;
 
 public class TableForm extends JFrame {
 
+    private static final int W = 1024;
+    private static final int H = 600;
+
     private JButton btnSearch;
     private JTextField fieldSearch;
     private JLabel labelSearch;
@@ -26,6 +29,10 @@ public class TableForm extends JFrame {
         }
 
         setContentPane(tablePane);
+        Dimension paneDim = new Dimension(W, H);
+        setSize(paneDim);
+        setPreferredSize(paneDim);
+        setLocationRelativeTo(null);
         setVisible(true);
         setMinimumSize(new Dimension(1024, 600));
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -36,7 +43,7 @@ public class TableForm extends JFrame {
         });
         btnRemove.addActionListener(e -> {
             JOptionPane.showConfirmDialog(null,
-                        "Вы действительно хотите удалить этого клиента из таблицы?");
+                    "Вы действительно хотите удалить этого клиента из таблицы?");
         });
     }
 
@@ -64,6 +71,7 @@ public class TableForm extends JFrame {
         tablePane.setInheritsPopupMenu(false);
         tablePane.setMinimumSize(new Dimension(1024, 600));
         tablePane.setName("Таблица");
+        tablePane.setPreferredSize(new Dimension(1024, 600));
         final JPanel panel1 = new JPanel();
         panel1.setLayout(new GridLayoutManager(1, 3, new Insets(0, 0, 0, 0), -1, -1));
         tablePane.add(panel1, new GridConstraints(0, 0, 1, 2, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
