@@ -109,6 +109,7 @@
             <constraints/>
             <properties>
               <autoResizeMode value="4"/>
+              <enabled value="true"/>
               <fillsViewportHeight value="true"/>
               <requestFocusEnabled value="false"/>
               <rowSelectionAllowed value="true"/>

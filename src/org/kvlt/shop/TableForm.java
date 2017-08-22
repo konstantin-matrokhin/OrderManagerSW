@@ -53,8 +53,9 @@ public class TableForm extends JFrame {
             Log.$(currentRow);
             if (currentRow == -1) return;
 
-            int result = JOptionPane.showConfirmDialog(null,
-                    "Вы действительно хотите удалить этого клиента из таблицы?");
+            int result = JOptionPane.showOptionDialog(null, "Удаление клиента",
+                    "Вы уверены?", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE,
+                    null, null, null);
             if (result == JOptionPane.YES_OPTION) {
                 int removeID = Integer.parseInt(getTable().getValueAt(currentRow, 0).toString());
                 OrderManager.getDB().query("DELETE FROM clients WHERE id=" + removeID);
@@ -122,6 +123,7 @@ public class TableForm extends JFrame {
         tablePane.add(scrollPane1, new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
         clientTable = new JTable();
         clientTable.setAutoResizeMode(4);
+        clientTable.setEnabled(true);
         clientTable.setFillsViewportHeight(true);
         clientTable.setRequestFocusEnabled(false);
         clientTable.setRowSelectionAllowed(true);

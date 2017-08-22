@@ -1,9 +1,6 @@
 package org.kvlt.shop;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
+import java.io.*;
 import java.nio.file.Files;
 import java.util.Properties;
 
@@ -21,10 +18,10 @@ public class OMSettings {
             File file = new File(fileName);
             File defaultsFile = new File(defaultsName);
             if (!file.exists()) {
-                Files.copy(defaultsFile.toPath(), new FileOutputStream(defaultsFile));
+                Files.copy(defaultsFile.toPath(), new FileOutputStream(fileName));
             }
             props = new Properties();
-            props.load(new FileInputStream(fileName));
+            props.load(new InputStreamReader(new FileInputStream(fileName), "UTF-8"));
         } catch (IOException e) {
             e.printStackTrace();
         }

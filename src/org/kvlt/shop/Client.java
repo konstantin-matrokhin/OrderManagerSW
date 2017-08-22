@@ -1,5 +1,6 @@
 package org.kvlt.shop;
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
@@ -8,7 +9,9 @@ public class Client {
     public Client(String name, String number, String address, String social) {
         try {
             Statement s = OrderManager.getDB().getConnection().createStatement();
-            int id = s.executeQuery("SELECT * FROM clients ORDER BY id DESC LIMIT 1").getInt("id") + 1;
+            int id;
+            ResultSet r = s.executeQuery("SELECT * FROM clients ORDER BY id DESC LIMIT 1");
+            if (r.next()) id = r.getInt("id") + 1; else id = 0;
             String code = generateCode(id, number);
             s.execute(
                     "INSERT INTO clients " +
@@ -24,7 +27,7 @@ public class Client {
 
     private String generateCode(int id, String number) {
         String numberPart = number.length() >= 4 ? number.substring(number.length() - 4) : "";
-        return id + numberPart;
+        return String.valueOf(id) + numberPart;
     }
 
 }

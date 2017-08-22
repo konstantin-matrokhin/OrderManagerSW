@@ -48,13 +48,20 @@ public class TableLoader {
     }
 
     private void initTable() {
-        model = (DefaultTableModel) tableForm.getTable().getModel();
+        model = new DefaultTableModel() {
+            @Override
+            public boolean isCellEditable(int row, int col) {
+                return false;
+            }
+        };
+        //model = (DefaultTableModel) tableForm.getTable().getModel();
+        tableForm.getTable().setModel(model);
         model.setColumnIdentifiers(titles);
     }
 
-    public TableForm getTableForm() {
+    /*public TableForm getTableForm() {
         return tableForm;
-    }
+    }*/
 
     public void loadDB() {
         model.setRowCount(0);
@@ -65,9 +72,9 @@ public class TableLoader {
                 int id = r.getInt("id");
                 String name = r.getString("name");
                 String number = r.getString("number");
-                String orders = "Посмотреть";/*r.getString("orders");*/
+                String orders = "Посмотреть";
                 String address = r.getString("address");
-                String referals = "Посмотреть";/*r.getString("referals");*/
+                String referals = "Посмотреть";
                 String code = r.getString("code");
                 String social = r.getString("social");
 
