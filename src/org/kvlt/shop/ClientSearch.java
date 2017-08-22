@@ -27,7 +27,6 @@ public class ClientSearch {
                 sorter.setRowFilter(null);
             } else {
                 sorter.setRowFilter(RowFilter.regexFilter("(?i)" + searchText));
-                Log.$("aaaaaaaaaaaaaaaaaaa");
             }
         };
     }
@@ -38,34 +37,5 @@ public class ClientSearch {
             tableForm.getFieldSearch().setText("");
         };
     }
-
-/*    public DocumentListener documentListener() {
-        return new DocumentListener() {
-
-            private void sort() {
-                searchText = tableForm.getFieldSearch().getText();
-                if (searchText.isEmpty()) {
-                    sorter.setRowFilter(null);
-                } else {
-                    sorter.setRowFilter(RowFilter.regexFilter("(?i)" + searchText));
-                }
-            }
-
-            @Override
-            public void insertUpdate(DocumentEvent e) {
-                sort();
-            }
-
-            @Override
-            public void removeUpdate(DocumentEvent e) {
-                sort();
-            }
-
-            @Override
-            public void changedUpdate(DocumentEvent e) {
-
-            }
-        };
-    }*/
 
 }

@@ -47,6 +47,7 @@ public class DBProvider {
                     "[address] VARCHAR(200)  NOT NULL,\n" +
                     "[referals] TEXT  NULL,\n" +
                     "[code] VARCHAR(32)  UNIQUE NOT NULL,\n" +
+                    "[card] VARCHAR(24) UNIQUE NOT NULL,\n" +
                     "[social] VARCHAR(64)  NULL\n" +
                     ")").close();
         } catch (Exception e) {

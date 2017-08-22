@@ -7,7 +7,6 @@ import java.util.Properties;
 public class OMSettings {
 
     private Properties props;
-    private Properties defaults;
     private String fileName = "config";
     private String defaultsName = "defaults";
 

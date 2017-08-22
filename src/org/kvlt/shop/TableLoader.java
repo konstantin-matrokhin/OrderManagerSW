@@ -21,6 +21,7 @@ public class TableLoader {
             "Адрес",
             "Рефералы",
             "Код",
+            "Номер карты",
             "Соц. сеть"
     };
 
@@ -57,7 +58,6 @@ public class TableLoader {
                 return false;
             }
         };
-        //model = (DefaultTableModel) tableForm.getTable().getModel();
         tableForm.getTable().setModel(model);
         model.setColumnIdentifiers(titles);
     }
@@ -79,10 +79,11 @@ public class TableLoader {
                 String address = r.getString("address");
                 String referals = "Посмотреть";
                 String code = r.getString("code");
+                String card = r.getString("card");
                 String social = r.getString("social");
 
                 model.addRow(new Object[] {
-                        id, name, number, orders, address, referals, code, social
+                        id, name, number, orders, address, referals, code, card, social
                 });
             }
             r.close();

@@ -17,7 +17,7 @@ public class AdditionForm extends JDialog {
     private JButton btnAddGoodies;
     private JTextField inputNumber;
     private JTextField inputAddress;
-    private JTextField inputCode;
+    private JTextField inputCard;
 
     private static final int W = 341;
     private static final int H = 217;
@@ -55,14 +55,15 @@ public class AdditionForm extends JDialog {
         String name = inputName.getText().trim();
         String number = inputNumber.getText().trim().replaceAll("\\s+", "");
         String address = inputAddress.getText().trim();
+        String card = inputCard.getText().trim();
         String social = inputSocial.getText().trim();
 
-        if (name.isEmpty() || number.isEmpty() || address.isEmpty() || social.isEmpty()) {
+        if (name.isEmpty() || number.isEmpty() || address.isEmpty() || card.isEmpty()) {
             JOptionPane.showMessageDialog(null, "Заполните все поля!");
             return;
         }
 
-        new Client(name, number, address, social);
+        new Client(name, number, address, card, social);
         dispose();
     }
 
@@ -127,15 +128,15 @@ public class AdditionForm extends JDialog {
         label3.setText("Адрес");
         panel4.add(label3, new GridConstraints(2, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final JLabel label4 = new JLabel();
-        label4.setText("Код");
+        label4.setText("Номер карты");
         panel4.add(label4, new GridConstraints(3, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         inputNumber = new JTextField();
         panel4.add(inputNumber, new GridConstraints(1, 1, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
         inputAddress = new JTextField();
         panel4.add(inputAddress, new GridConstraints(2, 1, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
-        inputCode = new JTextField();
-        inputCode.setEnabled(false);
-        panel4.add(inputCode, new GridConstraints(3, 1, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
+        inputCard = new JTextField();
+        inputCard.setEnabled(true);
+        panel4.add(inputCard, new GridConstraints(3, 1, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
         final JLabel label5 = new JLabel();
         label5.setText("Соц. сеть");
         panel4.add(label5, new GridConstraints(4, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
