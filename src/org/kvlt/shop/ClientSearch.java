@@ -32,6 +32,13 @@ public class ClientSearch {
         };
     }
 
+    public ActionListener clearListener() {
+        return e -> {
+            sorter.setRowFilter(null);
+            tableForm.getFieldSearch().setText("");
+        };
+    }
+
 /*    public DocumentListener documentListener() {
         return new DocumentListener() {
 

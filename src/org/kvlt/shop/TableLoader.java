@@ -30,7 +30,9 @@ public class TableLoader {
         initTable();
         initBtnActions();
         loadDB();
-        tableForm.getBtnSearch().addActionListener(new ClientSearch(tableForm).listener());
+        ClientSearch clientSearch = new ClientSearch(tableForm);
+        tableForm.getBtnSearch().addActionListener(clientSearch.listener());
+        tableForm.getBtnClear().addActionListener(clientSearch.clearListener());
     }
 
     private void initBtnActions() {

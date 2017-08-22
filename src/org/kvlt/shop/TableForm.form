@@ -59,7 +59,7 @@
           </component>
         </children>
       </grid>
-      <grid id="e9814" layout-manager="GridLayoutManager" row-count="1" column-count="5" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+      <grid id="e9814" layout-manager="GridLayoutManager" row-count="1" column-count="4" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
         <margin top="0" left="0" bottom="0" right="0"/>
         <constraints>
           <grid row="2" column="0" row-span="1" col-span="2" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
@@ -69,7 +69,7 @@
         <children>
           <component id="7dc72" class="javax.swing.JButton" binding="btnAdd">
             <constraints>
-              <grid row="0" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+              <grid row="0" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
               <text value="[+]"/>
@@ -82,7 +82,7 @@
           </hspacer>
           <component id="780ae" class="javax.swing.JButton" binding="btnRemove">
             <constraints>
-              <grid row="0" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+              <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
               <text value="[-]"/>
@@ -90,18 +90,10 @@
           </component>
           <component id="ffca6" class="javax.swing.JButton" binding="btnEdit">
             <constraints>
-              <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-            </constraints>
-            <properties>
-              <text value="Редактировать"/>
-            </properties>
-          </component>
-          <component id="5addc" class="javax.swing.JButton" default-binding="true">
-            <constraints>
               <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <text value="Button"/>
+              <text value="Редактировать"/>
             </properties>
           </component>
         </children>
@@ -121,7 +113,7 @@
               <fillsViewportHeight value="true"/>
               <requestFocusEnabled value="false"/>
               <rowSelectionAllowed value="true"/>
-              <toolTipText value="1"/>
+              <toolTipText value=""/>
             </properties>
           </component>
         </children>
