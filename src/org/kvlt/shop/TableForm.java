@@ -21,6 +21,7 @@ public class TableForm extends JFrame {
     private JPanel tablePane;
     private JButton btnRemove;
     private JButton btnEdit;
+    private JButton btnClear;
 
     public TableForm() {
         try {
@@ -39,6 +40,8 @@ public class TableForm extends JFrame {
         setTitle(TITLE);
         setMinimumSize(new Dimension(1024, 600));
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+
 
     }
 
@@ -66,6 +69,14 @@ public class TableForm extends JFrame {
 
     public JTable getTable() {
         return clientTable;
+    }
+
+    public JButton getBtnSearch() {
+        return btnSearch;
+    }
+
+    public JTextField getFieldSearch() {
+        return fieldSearch;
     }
 
     {

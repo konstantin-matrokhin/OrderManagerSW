@@ -30,6 +30,7 @@ public class TableLoader {
         initTable();
         initBtnActions();
         loadDB();
+        tableForm.getBtnSearch().addActionListener(new ClientSearch(tableForm).listener());
     }
 
     private void initBtnActions() {
@@ -59,9 +60,9 @@ public class TableLoader {
         model.setColumnIdentifiers(titles);
     }
 
-    /*public TableForm getTableForm() {
+    public TableForm getTableForm() {
         return tableForm;
-    }*/
+    }
 
     public void loadDB() {
         model.setRowCount(0);
@@ -84,7 +85,7 @@ public class TableLoader {
             }
             r.close();
             s.close();
-            Log.$("База данных загружена!");
+            Log.$("База данных обновлена!");
         } catch (SQLException e) {
             e.printStackTrace();
         }
