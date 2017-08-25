@@ -7,6 +7,7 @@ import org.kvlt.shop.org.kvlt.shop.utils.Log;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumnModel;
 import java.awt.event.ActionEvent;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -96,6 +97,9 @@ public class TableLoader {
             }
             r.close();
             s.close();
+            TableColumnModel columnModel = getTableForm().getTable().getColumnModel();
+            columnModel.getColumn(0).setPreferredWidth(10);
+            columnModel.getColumn(1).setPreferredWidth(150);
             Log.$("База данных обновлена!");
         } catch (SQLException e) {
             e.printStackTrace();

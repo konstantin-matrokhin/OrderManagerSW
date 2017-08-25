@@ -42,6 +42,8 @@ public class TableForm extends JFrame {
         setLocationRelativeTo(null);
         setVisible(true);
         setTitle(TITLE);
+        getTable().getTableHeader().setReorderingAllowed(false);
+        getTable().setRowHeight(40);
         setMinimumSize(new Dimension(1024, 600));
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -152,6 +154,7 @@ public class TableForm extends JFrame {
         tablePane.add(scrollPane1, new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
         clientTable = new JTable();
         clientTable.setAutoResizeMode(4);
+        clientTable.setDragEnabled(false);
         clientTable.setEnabled(true);
         clientTable.setFillsViewportHeight(true);
         clientTable.setRequestFocusEnabled(false);
