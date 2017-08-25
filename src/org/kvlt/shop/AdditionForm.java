@@ -6,7 +6,11 @@ import com.intellij.uiDesigner.core.Spacer;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.*;
+import java.awt.event.KeyEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 public class AdditionForm extends JDialog {
     private JPanel contentPane;
@@ -22,18 +26,39 @@ public class AdditionForm extends JDialog {
     private static final int W = 341;
     private static final int H = 217;
 
-    public AdditionForm() {
+    public static final int ADD = 1;
+    public static final int EDIT = 0;
+
+    public AdditionForm(int action) {
         setContentPane(contentPane);
         setModal(true);
         Dimension size = new Dimension(W, H);
         setSize(W, H);
         setPreferredSize(size);
+
+        ResultSet data;
+        int id = -1;
+
+        if (action == EDIT) {
+            int row = OrderManager.getTableLoader().getTableForm().getTable().getSelectedRow();
+            id = (Integer) OrderManager.getTableLoader().getTableForm().getTable().getValueAt(row, 0);
+            try {
+                data = OrderManager.getDB().getConnection().createStatement().executeQuery("SELECT * FROM clients WHERE id=" + id);
+                fillFields(data);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+
+        setTitle(action == ADD ? "Добавление клиента" : "Редактирование данных, " + id);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         getRootPane().setDefaultButton(buttonOK);
 
+        final int cid = id;
+
         buttonOK.addActionListener(e -> {
-            onOK();
+            onOK(cid, action);
         });
 
         buttonCancel.addActionListener(e -> {
@@ -51,7 +76,7 @@ public class AdditionForm extends JDialog {
         }, KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
     }
 
-    private void addClient() {
+    private void addClient(int id, boolean edit) {
         String name = inputName.getText().trim();
         String number = inputNumber.getText().trim().replaceAll("\\s+", "");
         String address = inputAddress.getText().trim();
@@ -63,12 +88,26 @@ public class AdditionForm extends JDialog {
             return;
         }
 
-        new Client(name, number, address, card, social);
+        new Client(id, name, number, address, card, social, edit);
         dispose();
     }
 
-    private void onOK() {
-        addClient();
+    private void fillFields(ResultSet data) throws SQLException {
+        String name = data.getString("name");
+        String number = data.getString("number");
+        String address = data.getString("address");
+        String card = data.getString("card");
+        String social = data.getString("social");
+
+        inputName.setText(name);
+        inputNumber.setText(number);
+        inputAddress.setText(address);
+        inputCard.setText(card);
+        inputSocial.setText(social);
+    }
+
+    private void onOK(int id, int action) {
+        addClient(id, action == EDIT);
     }
 
     private void onCancel() {

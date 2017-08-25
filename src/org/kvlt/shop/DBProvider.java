@@ -33,7 +33,6 @@ public class DBProvider {
 
         connect();
         initDB();
-        testRow(); // TODO: remove
     }
 
     private void initDB() {
@@ -55,7 +54,7 @@ public class DBProvider {
         }
     }
 
-    private void testRow() {
+    private void testRow() { //TODO: Remove
         try {
             conn.createStatement().executeQuery(
                     "INSERT INTO [clients] (id, name, number, address, code) VALUES" +

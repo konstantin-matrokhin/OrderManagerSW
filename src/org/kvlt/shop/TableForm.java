@@ -48,7 +48,13 @@ public class TableForm extends JFrame {
 
     private void registerListeners() {
         btnAdd.addActionListener(e -> {
-            AdditionForm dialog = new AdditionForm();
+            AdditionForm dialog = new AdditionForm(AdditionForm.ADD);
+            dialog.pack();
+            dialog.setVisible(true);
+        });
+        btnEdit.addActionListener(e -> {
+            if (getTable().getSelectedRow() == -1) return;
+            AdditionForm dialog = new AdditionForm(AdditionForm.EDIT);
             dialog.pack();
             dialog.setVisible(true);
         });
