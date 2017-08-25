@@ -1,9 +1,12 @@
-package org.kvlt.shop;
+package org.kvlt.shop.org.kvlt.shop.gui;
 
 import com.intellij.uiDesigner.core.GridConstraints;
 import com.intellij.uiDesigner.core.GridLayoutManager;
 import com.intellij.uiDesigner.core.Spacer;
 import org.jdesktop.xswingx.PromptSupport;
+import org.kvlt.shop.org.kvlt.shop.utils.Log;
+import org.kvlt.shop.org.kvlt.shop.utils.OMSettings;
+import org.kvlt.shop.OrderManager;
 
 import javax.swing.*;
 import java.awt.*;
@@ -153,7 +156,6 @@ public class TableForm extends JFrame {
         clientTable.setFillsViewportHeight(true);
         clientTable.setRequestFocusEnabled(false);
         clientTable.setRowSelectionAllowed(true);
-        clientTable.setToolTipText("");
         scrollPane1.setViewportView(clientTable);
         labelSearch.setLabelFor(fieldSearch);
     }

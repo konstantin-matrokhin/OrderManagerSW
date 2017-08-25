@@ -1,5 +1,7 @@
 package org.kvlt.shop;
 
+import org.kvlt.shop.org.kvlt.shop.gui.TableForm;
+
 import javax.swing.*;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;

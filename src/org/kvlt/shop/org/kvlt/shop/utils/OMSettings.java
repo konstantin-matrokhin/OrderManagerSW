@@ -1,4 +1,4 @@
-package org.kvlt.shop;
+package org.kvlt.shop.org.kvlt.shop.utils;
 
 import java.io.*;
 import java.nio.file.Files;

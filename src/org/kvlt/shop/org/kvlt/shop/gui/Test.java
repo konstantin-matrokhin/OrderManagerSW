@@ -1,4 +1,4 @@
-package org.kvlt.shop;
+package org.kvlt.shop.org.kvlt.shop.gui;
 
 import com.intellij.uiDesigner.core.GridConstraints;
 import com.intellij.uiDesigner.core.GridLayoutManager;

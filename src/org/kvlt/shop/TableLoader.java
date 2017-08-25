@@ -1,5 +1,10 @@
 package org.kvlt.shop;
 
+import org.kvlt.shop.org.kvlt.shop.gui.ButtonColumn;
+import org.kvlt.shop.org.kvlt.shop.gui.OrdersForm;
+import org.kvlt.shop.org.kvlt.shop.gui.TableForm;
+import org.kvlt.shop.org.kvlt.shop.utils.Log;
+
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.event.ActionEvent;
@@ -19,7 +24,7 @@ public class TableLoader {
             "Тел.",
             "Заказы",
             "Адрес",
-            "Рефералы",
+            "Приглашенные",
             "Код",
             "Номер карты",
             "Соц. сеть"
@@ -40,7 +45,10 @@ public class TableLoader {
         ButtonColumn viewOrders = new ButtonColumn(tableForm.getTable(), new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                int id = (Integer) getTableForm().getTable().getValueAt(getTableForm().getTable().getSelectedRow(), 0);
+                OrdersForm form = new OrdersForm(id);
+                form.pack();
+                form.setVisible(true);
             }
         }, 3);
         ButtonColumn viewReferals = new ButtonColumn(tableForm.getTable(), new AbstractAction() {

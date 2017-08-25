@@ -1,5 +1,8 @@
 package org.kvlt.shop;
 
+import org.kvlt.shop.org.kvlt.shop.utils.Log;
+import org.kvlt.shop.org.kvlt.shop.utils.OMSettings;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.Statement;
