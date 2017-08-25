@@ -9,8 +9,9 @@ import java.sql.Statement;
 
 public class DBProvider {
 
+    public static final String TABLE_NAME = "clients";
+
     private String driver;
-    private String tableName = "clients";
 
     private String url;
     private String host;
@@ -41,7 +42,7 @@ public class DBProvider {
     private void initDB() {
         try {
             conn.createStatement().executeQuery("" +
-                    "CREATE TABLE IF NOT EXISTS [" + tableName + "] (\n" +
+                    "CREATE TABLE IF NOT EXISTS [" + TABLE_NAME + "] (\n" +
                     "[id] INTEGER  PRIMARY KEY AUTOINCREMENT NOT NULL,\n" +
                     "[name] VARCHAR(100)  NOT NULL,\n" +
                     "[number] VARCHAR(15)  UNIQUE NOT NULL,\n" +

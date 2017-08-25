@@ -64,7 +64,7 @@ public class TableLoader {
         model = new DefaultTableModel() {
             @Override
             public boolean isCellEditable(int row, int col) {
-                return false;
+                return (col == 3 || col == 5);
             }
         };
         tableForm.getTable().setModel(model);
