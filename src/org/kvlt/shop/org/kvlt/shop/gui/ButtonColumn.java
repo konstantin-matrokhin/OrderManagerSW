@@ -122,6 +122,7 @@ public class ButtonColumn extends AbstractCellEditor
 		else
 		{
 			editButton.setText( value.toString() );
+			editButton.setText( value.toString() );
 			editButton.setIcon( null );
 		}
 

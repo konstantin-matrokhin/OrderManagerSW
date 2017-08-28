@@ -12,8 +12,11 @@ public class Client {
             Statement s = OrderManager.getDB().getConnection().createStatement();
             if (!edit) {
                 ResultSet r = s.executeQuery("SELECT * FROM clients ORDER BY id DESC LIMIT 1");
-                if (r.next()) id = r.getInt("id") + 1;
-                else id = 1;
+                if (r.next()) {
+                    id = r.getInt("id") + 1;
+                } else {
+                    id = 1;
+                }
                 String code = generateCode(id, number);
                 s.execute(
                         "INSERT INTO clients " +
