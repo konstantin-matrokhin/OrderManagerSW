@@ -9,6 +9,7 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
 import java.awt.event.ActionEvent;
+import java.awt.event.KeyEvent;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -18,6 +19,7 @@ public class TableLoader {
     private TableForm tableForm;
     private DBProvider db;
     private DefaultTableModel model;
+    private ClientSearch clientSearch;
 
     private Object[] titles = {
             "ID",
@@ -37,9 +39,14 @@ public class TableLoader {
         initTable();
         initBtnActions();
         loadDB();
-        ClientSearch clientSearch = new ClientSearch(tableForm);
+        clientSearch = new ClientSearch(tableForm);
         tableForm.getBtnSearch().addActionListener(clientSearch.listener());
         tableForm.getBtnClear().addActionListener(clientSearch.clearListener());
+        tableForm.getTablePane().registerKeyboardAction(getClientSearch().listener(), KeyStroke.getKeyStroke(KeyEvent.VK_ENTER, 0), JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
+    }
+
+    public ClientSearch getClientSearch() {
+        return clientSearch;
     }
 
     private void initBtnActions() {

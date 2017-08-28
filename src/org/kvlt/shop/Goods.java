@@ -1,12 +1,31 @@
 package org.kvlt.shop;
 
+import org.json.simple.JSONObject;
+
 public class Goods {
 
     private String name;
-    private float cost;
+    private double cost;
     private int article;
-    private int discount;
+    private String discount;
     private GoodsType type;
+
+    public Goods(String name, double cost, int article, String discount, GoodsType type) {
+        this.name = name;
+        this.cost = cost;
+        this.article = article;
+        this.discount = discount;
+        this.type = type;
+    }
+
+    public void save() {
+        JSONObject j = new JSONObject();
+        j.put("name", name);
+        j.put("cost", cost);
+        j.put("article", article);
+        j.put("discount", discount);
+        j.put("type", type.toString());
+    }
 
     public String getName() {
         return name;
@@ -16,7 +35,7 @@ public class Goods {
         this.name = name;
     }
 
-    public float getCost() {
+    public double getCost() {
         return cost;
     }
 
@@ -32,11 +51,11 @@ public class Goods {
         this.article = article;
     }
 
-    public int getDiscount() {
+    public String getDiscount() {
         return discount;
     }
 
-    public void setDiscount(int discount) {
+    public void setDiscount(String discount) {
         this.discount = discount;
     }
 

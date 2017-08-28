@@ -27,7 +27,7 @@ public class AdditionForm extends JDialog {
     private JTextField inputCode;
 
     private static final int W = 341;
-    private static final int H = 217;
+    private static final int H = 230;
 
     public static final int ADD = 1;
     public static final int EDIT = 0;
@@ -91,13 +91,14 @@ public class AdditionForm extends JDialog {
         String address = inputAddress.getText().trim();
         String card = inputCard.getText().trim();
         String social = inputSocial.getText().trim();
+        String code = inputCode.getText();
 
         if (name.isEmpty() || number.isEmpty() || address.isEmpty() || card.isEmpty()) {
             JOptionPane.showMessageDialog(null, "Заполните все поля!");
             return;
         }
 
-        new Client(id, name, number, address, card, social, edit);
+        new Client(id, name, number, address, code, card, social, edit);
         dispose();
     }
 
@@ -107,12 +108,15 @@ public class AdditionForm extends JDialog {
         String address = data.getString("address");
         String card = data.getString("card");
         String social = data.getString("social");
+        String code = data.getString("code");
 
         inputName.setText(name);
         inputNumber.setText(number);
         inputAddress.setText(address);
         inputCard.setText(card);
         inputSocial.setText(social);
+        inputCode.setText(code);
+        inputCode.setEditable(false);
     }
 
     private void onOK(int id, int action) {
@@ -156,6 +160,7 @@ public class AdditionForm extends JDialog {
         buttonCancel.setText("Отмена");
         panel2.add(buttonCancel, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         btnAddGoodies = new JButton();
+        btnAddGoodies.setEnabled(false);
         btnAddGoodies.setText("Добавить товары");
         panel1.add(btnAddGoodies, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final JPanel panel3 = new JPanel();

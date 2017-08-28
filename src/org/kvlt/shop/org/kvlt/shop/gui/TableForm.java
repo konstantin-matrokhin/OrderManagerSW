@@ -4,9 +4,9 @@ import com.intellij.uiDesigner.core.GridConstraints;
 import com.intellij.uiDesigner.core.GridLayoutManager;
 import com.intellij.uiDesigner.core.Spacer;
 import org.jdesktop.xswingx.PromptSupport;
+import org.kvlt.shop.OrderManager;
 import org.kvlt.shop.org.kvlt.shop.utils.Log;
 import org.kvlt.shop.org.kvlt.shop.utils.OMSettings;
-import org.kvlt.shop.OrderManager;
 
 import javax.swing.*;
 import java.awt.*;
@@ -77,9 +77,6 @@ public class TableForm extends JFrame {
                 OrderManager.getTableLoader().loadDB();
             }
         });
-        /*btnRefresh.addActionListener(e -> {
-            OrderManager.getTableLoader().loadDB();
-        });*/
     }
 
     public JTable getTable() {
@@ -94,6 +91,9 @@ public class TableForm extends JFrame {
         return btnClear;
     }
 
+    public JPanel getTablePane() {
+        return tablePane;
+    }
 
     public JTextField getFieldSearch() {
         return fieldSearch;
