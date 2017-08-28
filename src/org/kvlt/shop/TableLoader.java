@@ -91,34 +91,37 @@ public class TableLoader {
     }
 
     public void loadDB() {
-        model.setRowCount(0);
-        try {
-            Statement s = db.getConnection().createStatement();
-            ResultSet r = s.executeQuery("SELECT * FROM clients ORDER BY id DESC");
-            while (r.next()) {
-                int id = r.getInt("id");
-                String name = r.getString("name");
-                String number = r.getString("number");
-                String orders = "Посмотреть";
-                String address = r.getString("address");
-                String referrals = "Посмотреть";
-                String code = r.getString("code");
-                String card = r.getString("card");
-                String social = r.getString("social");
+        SwingUtilities.invokeLater(() -> {
+            model.setRowCount(0);
+            try {
+                Statement s = db.getConnection().createStatement();
+                ResultSet r = s.executeQuery("SELECT * FROM clients ORDER BY id DESC");
+                while (r.next()) {
+                    int id = r.getInt("id");
+                    String name = r.getString("name");
+                    String number = r.getString("number");
+                    String orders = "Посмотреть";
+                    String address = r.getString("address");
+                    String referrals = "Посмотреть";
+                    String code = r.getString("code");
+                    String card = r.getString("card");
+                    String social = r.getString("social");
 
-                model.addRow(new Object[] {
-                        id, name, number, orders, address, referrals, code, card, social
-                });
+                    model.addRow(new Object[] {
+                            id, name, number, orders, address, referrals, code, card, social
+                    });
+                }
+                r.close();
+                s.close();
+                TableColumnModel columnModel = getTableForm().getTable().getColumnModel();
+                columnModel.getColumn(0).setPreferredWidth(10);
+                columnModel.getColumn(1).setPreferredWidth(150);
+                Log.$("База данных обновлена!");
+            } catch (SQLException e) {
+                e.printStackTrace();
             }
-            r.close();
-            s.close();
-            TableColumnModel columnModel = getTableForm().getTable().getColumnModel();
-            columnModel.getColumn(0).setPreferredWidth(10);
-            columnModel.getColumn(1).setPreferredWidth(150);
-            Log.$("База данных обновлена!");
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        });
+
     }
 
 }

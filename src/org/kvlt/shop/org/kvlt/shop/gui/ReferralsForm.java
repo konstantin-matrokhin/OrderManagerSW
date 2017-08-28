@@ -66,6 +66,7 @@ public class ReferralsForm extends JDialog {
                 String name = refDataset.getString("name");
                 listModel.addElement("ID: " + currentId +  ", " + name);
             }
+            setTitle("Число приглашенных: " + listModel.getSize());
         }
     }
 
