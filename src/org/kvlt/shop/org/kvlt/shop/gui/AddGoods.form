@@ -140,8 +140,8 @@
             </constraints>
             <properties>
               <model>
-                <item value="A"/>
-                <item value="B"/>
+                <item value="A (Дорогие)"/>
+                <item value="B (Дешевые)"/>
               </model>
             </properties>
           </component>

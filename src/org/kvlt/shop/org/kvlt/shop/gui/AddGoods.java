@@ -143,8 +143,8 @@ public class AddGoods extends JDialog {
         panel3.add(label5, new GridConstraints(4, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         goodsType = new JComboBox();
         final DefaultComboBoxModel defaultComboBoxModel1 = new DefaultComboBoxModel();
-        defaultComboBoxModel1.addElement("A");
-        defaultComboBoxModel1.addElement("B");
+        defaultComboBoxModel1.addElement("A (Дорогие)");
+        defaultComboBoxModel1.addElement("B (Дешевые)");
         goodsType.setModel(defaultComboBoxModel1);
         panel3.add(goodsType, new GridConstraints(4, 1, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
     }

@@ -2,6 +2,7 @@ package org.kvlt.shop;
 
 import org.kvlt.shop.org.kvlt.shop.gui.ButtonColumn;
 import org.kvlt.shop.org.kvlt.shop.gui.OrdersForm;
+import org.kvlt.shop.org.kvlt.shop.gui.ReferralsForm;
 import org.kvlt.shop.org.kvlt.shop.gui.TableForm;
 import org.kvlt.shop.org.kvlt.shop.utils.Log;
 
@@ -65,7 +66,10 @@ public class TableLoader {
         ButtonColumn viewReferals = new ButtonColumn(tableForm.getTable(), new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                int id = (Integer) getTableForm().getTable().getValueAt(getTableForm().getTable().getSelectedRow(), 0);
+                ReferralsForm refForm = new ReferralsForm(id);
+                refForm.pack();
+                refForm.setVisible(true);
             }
         }, ORDERS_BUTTON_COLUMN);
     }
@@ -97,13 +101,13 @@ public class TableLoader {
                 String number = r.getString("number");
                 String orders = "Посмотреть";
                 String address = r.getString("address");
-                String referals = "Посмотреть";
+                String referrals = "Посмотреть";
                 String code = r.getString("code");
                 String card = r.getString("card");
                 String social = r.getString("social");
 
                 model.addRow(new Object[] {
-                        id, name, number, orders, address, referals, code, card, social
+                        id, name, number, orders, address, referrals, code, card, social
                 });
             }
             r.close();

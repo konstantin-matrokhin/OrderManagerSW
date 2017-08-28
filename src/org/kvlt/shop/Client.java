@@ -39,10 +39,10 @@ public class Client {
                     ResultSet referal = s.executeQuery("SELECT * FROM clients WHERE code='" + inviteCode + "' LIMIT 1");
                     if (referal.next()) {
                         int invId = referal.getInt("id");
-                        String oldRef = referal.getString("referals");
+                        String oldRef = referal.getString("referrals");
                         String newReferals = genReferrals(id, oldRef);
 
-                        s.execute("UPDATE clients SET referals='" + newReferals + "' WHERE id=" + invId);
+                        s.execute("UPDATE clients SET referrals='" + newReferals + "' WHERE id=" + invId);
                         referal.close();
                     }
                 }
