@@ -4,7 +4,6 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
-import org.kvlt.shop.org.kvlt.shop.utils.Log;
 
 import javax.swing.*;
 import java.sql.ResultSet;
@@ -13,6 +12,9 @@ import java.sql.Statement;
 import java.util.Random;
 
 public class Client {
+
+    private static final String REFERRALS_ARRAY = "referrals";
+    private static final int PHONE_LAST_DIGITS_AMOUNT = 4;
 
     public Client(int id, String name, String number, String address, String inviteCode, String card, String social, boolean edit) {
         try {
@@ -28,55 +30,66 @@ public class Client {
 
                 String code = generateCode(id, number);
 
-                s.execute(
-                        "INSERT INTO clients " +
-                                "(name, number, address, code, card, social) " +
+                s.execute("INSERT INTO clients\n" +
+                                "(name, number, address, code, card, social)\n" +
                                 "VALUES ('" + name + "', '" + number + "', '" + address + "', '" + code + "', '" + card + "', '" + social + "')"
                 );
-                //int newId = s.executeQuery("SELECT id FROM clients WHERE number='" + number + "'");
-                ResultSet referal = s.executeQuery("SELECT * FROM clients WHERE code='" + inviteCode + "' LIMIT 1");
-                int invId = referal.getInt("id");
-                String oldRef = referal.getString("referals");
-                String newReferals = genReferals(id, oldRef);
 
-                s.execute("UPDATE clients SET referals='" + newReferals + "' WHERE id=" + invId);
+                if (!inviteCode.trim().isEmpty()) {
+                    ResultSet referal = s.executeQuery("SELECT * FROM clients WHERE code='" + inviteCode + "' LIMIT 1");
+                    if (referal.next()) {
+                        int invId = referal.getInt("id");
+                        String oldRef = referal.getString("referals");
+                        String newReferals = genReferrals(id, oldRef);
 
+                        s.execute("UPDATE clients SET referals='" + newReferals + "' WHERE id=" + invId);
+                        referal.close();
+                    }
+                }
             } else {
                 s.execute("UPDATE clients SET name='" + name + "'," +
                         "number='" + number + "', address='" + address + "'," +
                         "social='" + social + "' WHERE id=" + id);
             }
+
             s.close();
             OrderManager.getTableLoader().loadDB();
+
         } catch (ParseException e) {
             JOptionPane.showMessageDialog(null, "Ошибка! Вероятно, указан неверный код.");
-            Log.$("Всё пошло по пизде.\n" + e.getUnexpectedObject());
+            e.printStackTrace();
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
-    private String genReferals(int id, String oldRef) throws NullPointerException, ParseException {
-        JSONParser parser = new JSONParser();
+
+    //TODO: fix warnings
+    private String genReferrals(int id, String oldRef) throws NullPointerException, ParseException {
         JSONObject obj;
-        JSONArray refs = null;
+        JSONArray refs;
+
         if (oldRef == null || oldRef.isEmpty()) {
             obj = new JSONObject();
             refs = new JSONArray();
             refs.add(0); /*HOTFIX*/
             refs.remove(0);
         } else {
-            obj = (JSONObject) parser.parse(oldRef);
-            refs = (JSONArray) obj.get("referals");
+            obj = (JSONObject) new JSONParser().parse(oldRef);
+            refs = (JSONArray) obj.get(REFERRALS_ARRAY);
         }
+
         refs.add(id);
-        obj.put("referals", refs);
+        obj.put(REFERRALS_ARRAY, refs);
         return obj.toJSONString();
     }
 
     private String generateCode(int id, String number) {
-        String numberPart = number.length() >= 4 ? number.substring(number.length() - 4) : String.valueOf(new Random().nextInt(9999));
-        return String.valueOf(id) + numberPart;
+        String numberPart = (number.length() >= PHONE_LAST_DIGITS_AMOUNT)
+                ? number.substring(number.length() - PHONE_LAST_DIGITS_AMOUNT)
+                : String.valueOf(new Random().nextInt(9999));
+
+        return id + numberPart;
     }
 
 }

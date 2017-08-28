@@ -31,6 +31,10 @@ public class AddGoods extends JDialog {
         setTitle("Добавление товара клиенту ID: " + id);
         getRootPane().setDefaultButton(buttonOK);
 
+        registerListeners();
+    }
+
+    private void registerListeners() {
         buttonOK.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 onOK();
@@ -43,7 +47,6 @@ public class AddGoods extends JDialog {
             }
         });
 
-        // call onCancel() when cross is clicked
         setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
         addWindowListener(new WindowAdapter() {
             public void windowClosing(WindowEvent e) {
@@ -51,7 +54,6 @@ public class AddGoods extends JDialog {
             }
         });
 
-        // call onCancel() on ESCAPE
         contentPane.registerKeyboardAction(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 onCancel();
@@ -65,6 +67,7 @@ public class AddGoods extends JDialog {
         double price = Double.parseDouble(inputPrice.getText());
         String discount = inputDiscount.getText();
         GoodsType type = goodsType.getSelectedIndex() == 0 ? GoodsType.EXPENSIVE : GoodsType.CHEAP;
+
         if (name.isEmpty() || price < 1) {
             JOptionPane.showMessageDialog(null, "Заполните все нужные поля!");
             return;
@@ -76,7 +79,6 @@ public class AddGoods extends JDialog {
     }
 
     private void onCancel() {
-        // add your code here if necessary
         dispose();
     }
 

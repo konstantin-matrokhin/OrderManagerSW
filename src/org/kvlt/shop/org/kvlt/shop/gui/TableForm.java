@@ -5,7 +5,6 @@ import com.intellij.uiDesigner.core.GridLayoutManager;
 import com.intellij.uiDesigner.core.Spacer;
 import org.jdesktop.xswingx.PromptSupport;
 import org.kvlt.shop.OrderManager;
-import org.kvlt.shop.org.kvlt.shop.utils.Log;
 import org.kvlt.shop.org.kvlt.shop.utils.OMSettings;
 
 import javax.swing.*;
@@ -31,21 +30,24 @@ public class TableForm extends JFrame {
         try {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
         } catch (Exception e) {
-            e.printStackTrace();
+
         }
 
-        setContentPane(tablePane);
         Dimension paneDim = new Dimension(W, H);
-        registerListeners();
+
+        setContentPane(tablePane);
         setSize(paneDim);
         setPreferredSize(paneDim);
         setLocationRelativeTo(null);
-        setVisible(true);
         setTitle(TITLE);
+        setMinimumSize(paneDim);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setVisible(true);
+
+        registerListeners();
+
         getTable().getTableHeader().setReorderingAllowed(false);
         getTable().setRowHeight(40);
-        setMinimumSize(new Dimension(1024, 600));
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         PromptSupport.setPrompt("Любые данные клиента из таблицы", fieldSearch);
         PromptSupport.setFocusBehavior(PromptSupport.FocusBehavior.SHOW_PROMPT, fieldSearch);
@@ -65,12 +67,13 @@ public class TableForm extends JFrame {
         });
         btnRemove.addActionListener(e -> {
             int currentRow = getTable().getSelectedRow();
-            Log.$(currentRow);
+
             if (currentRow == -1) return;
 
             int result = JOptionPane.showOptionDialog(null, "Удаление клиента",
                     "Вы уверены?", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE,
                     null, null, null);
+
             if (result == JOptionPane.YES_OPTION) {
                 int removeID = Integer.parseInt(getTable().getValueAt(currentRow, 0).toString());
                 OrderManager.getDB().query("DELETE FROM clients WHERE id=" + removeID);

@@ -16,12 +16,7 @@ import java.sql.Statement;
 
 public class TableLoader {
 
-    private TableForm tableForm;
-    private DBProvider db;
-    private DefaultTableModel model;
-    private ClientSearch clientSearch;
-
-    private Object[] titles = {
+    private static final Object[] TITLES = {
             "ID",
             "Имя",
             "Тел.",
@@ -32,6 +27,14 @@ public class TableLoader {
             "Номер карты",
             "Соц. сеть"
     };
+
+    private static final int REFERAL_BUTTON_COLUMN = 3;
+    private static final int ORDERS_BUTTON_COLUMN  = 5;
+
+    private TableForm tableForm;
+    private DBProvider db;
+    private DefaultTableModel model;
+    private ClientSearch clientSearch;
 
     public TableLoader() {
         tableForm = new TableForm();
@@ -58,24 +61,25 @@ public class TableLoader {
                 form.pack();
                 form.setVisible(true);
             }
-        }, 3);
+        }, REFERAL_BUTTON_COLUMN);
         ButtonColumn viewReferals = new ButtonColumn(tableForm.getTable(), new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
 
             }
-        }, 5);
+        }, ORDERS_BUTTON_COLUMN);
     }
 
     private void initTable() {
         model = new DefaultTableModel() {
             @Override
             public boolean isCellEditable(int row, int col) {
-                return (col == 3 || col == 5);
+                return (col == REFERAL_BUTTON_COLUMN || col == ORDERS_BUTTON_COLUMN);
             }
         };
+
         tableForm.getTable().setModel(model);
-        model.setColumnIdentifiers(titles);
+        model.setColumnIdentifiers(TITLES);
     }
 
     public TableForm getTableForm() {

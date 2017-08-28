@@ -33,14 +33,16 @@ public class AdditionForm extends JDialog {
     public static final int EDIT = 0;
 
     public AdditionForm(int action) {
-        setContentPane(contentPane);
-        setModal(true);
         Dimension size = new Dimension(W, H);
-        setSize(W, H);
-        setPreferredSize(size);
-
         ResultSet data;
         int id = -1;
+
+        setContentPane(contentPane);
+        setModal(true);
+        setSize(W, H);
+        setPreferredSize(size);
+        setLocationRelativeTo(null);
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 
         if (action == EDIT) {
             int row = OrderManager.getTableLoader().getTableForm().getTable().getSelectedRow();
@@ -54,8 +56,7 @@ public class AdditionForm extends JDialog {
         }
 
         setTitle(action == ADD ? "Добавление клиента" : "Редактирование данных, " + id);
-        setLocationRelativeTo(null);
-        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+
         getRootPane().setDefaultButton(buttonOK);
 
         final int cid = id;
@@ -94,7 +95,7 @@ public class AdditionForm extends JDialog {
         String code = inputCode.getText();
 
         if (name.isEmpty() || number.isEmpty() || address.isEmpty() || card.isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Заполните все поля!");
+            JOptionPane.showMessageDialog(null, "Заполните все необходимые поля!");
             return;
         }
 
@@ -124,7 +125,6 @@ public class AdditionForm extends JDialog {
     }
 
     private void onCancel() {
-        // add your code here if necessary
         dispose();
     }
 
@@ -172,16 +172,16 @@ public class AdditionForm extends JDialog {
         inputName = new JTextField();
         panel4.add(inputName, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
         final JLabel label1 = new JLabel();
-        label1.setText("ФИО");
+        label1.setText("ФИО *");
         panel4.add(label1, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final JLabel label2 = new JLabel();
-        label2.setText("Тел.");
+        label2.setText("Тел. *");
         panel4.add(label2, new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final JLabel label3 = new JLabel();
-        label3.setText("Адрес");
+        label3.setText("Адрес *");
         panel4.add(label3, new GridConstraints(2, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final JLabel label4 = new JLabel();
-        label4.setText("Номер карты");
+        label4.setText("Номер карты *");
         panel4.add(label4, new GridConstraints(4, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         inputNumber = new JTextField();
         panel4.add(inputNumber, new GridConstraints(1, 1, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
@@ -208,11 +208,4 @@ public class AdditionForm extends JDialog {
     public JComponent $$$getRootComponent$$$() {
         return contentPane;
     }
-
-    //    public static void main(String[] args) {
-//        AdditionForm dialog = new AdditionForm();
-//        dialog.pack();
-//        dialog.setVisible(true);
-//        System.exit(0);
-//    }
 }
