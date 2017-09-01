@@ -9,8 +9,10 @@ import org.kvlt.shop.org.kvlt.shop.utils.Log;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
+import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -31,6 +33,7 @@ public class TableLoader {
 
     private static final int REFERAL_BUTTON_COLUMN = 3;
     private static final int ORDERS_BUTTON_COLUMN  = 5;
+    private static final int SOCIAL_BUTTON_COLUMN  = 8;
 
     private TableForm tableForm;
     private DBProvider db;
@@ -72,13 +75,30 @@ public class TableLoader {
                 refForm.setVisible(true);
             }
         }, ORDERS_BUTTON_COLUMN);
+        ButtonColumn viewSocial = new ButtonColumn(tableForm.getTable(), new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent event) {
+                String link = (String) getTableForm().getTable().getValueAt(
+                        getTableForm().getTable().getSelectedRow(), SOCIAL_BUTTON_COLUMN);
+                try {
+                    if (!link.startsWith("https://") || !link.startsWith("http://")) {
+                        link = "http://" + link;
+                    }
+                    Desktop.getDesktop().browse(new URL(link).toURI());
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }, SOCIAL_BUTTON_COLUMN);
     }
 
     private void initTable() {
         model = new DefaultTableModel() {
             @Override
             public boolean isCellEditable(int row, int col) {
-                return (col == REFERAL_BUTTON_COLUMN || col == ORDERS_BUTTON_COLUMN);
+                return (   col == REFERAL_BUTTON_COLUMN
+                        || col == ORDERS_BUTTON_COLUMN
+                        || col == SOCIAL_BUTTON_COLUMN);
             }
         };
 
