@@ -61,11 +61,11 @@ public class AdditionForm extends JDialog {
 
         final int cid = id;
 
-        btnAddGoodies.addActionListener(e -> {
+/*        btnAddGoodies.addActionListener(e -> {
             AddGoods addGoods = new AddGoods(cid);
             addGoods.pack();
             addGoods.setVisible(true);
-        });
+    });*/
 
         buttonOK.addActionListener(e -> onOK(cid, action));
 

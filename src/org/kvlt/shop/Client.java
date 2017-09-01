@@ -49,7 +49,7 @@ public class Client {
             } else {
                 s.execute("UPDATE clients SET name='" + name + "'," +
                         "number='" + number + "', address='" + address + "'," +
-                        "social='" + social + "' WHERE id=" + id);
+                        "social='" + social + "', card='" + card + "' WHERE id=" + id);
             }
 
             s.close();

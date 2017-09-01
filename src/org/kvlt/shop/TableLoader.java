@@ -75,6 +75,8 @@ public class TableLoader {
             public void actionPerformed(ActionEvent event) {
                 String link = (String) getTableForm().getTable().getValueAt(
                         getTableForm().getTable().getSelectedRow(), SOCIAL_BUTTON_COLUMN);
+                if (link.isEmpty()) return;
+
                 try {
                     if (!link.startsWith("https://") || !link.startsWith("http://")) {
                         link = "http://" + link;

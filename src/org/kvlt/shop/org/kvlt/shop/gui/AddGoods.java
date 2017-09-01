@@ -24,11 +24,12 @@ public class AddGoods extends JDialog {
     private static final int W = 280;
     private static final int H = 235;
 
-    public AddGoods(int id) {
+    public AddGoods(JFrame parent, int id) {
         setContentPane(contentPane);
         setModal(true);
         setSize(new Dimension(W, H));
         setTitle("Добавление товара клиенту ID: " + id);
+        setLocationRelativeTo(null);
         getRootPane().setDefaultButton(buttonOK);
 
         registerListeners();
@@ -36,7 +37,6 @@ public class AddGoods extends JDialog {
 
     private void registerListeners() {
         buttonOK.addActionListener(e -> onOK());
-
         buttonCancel.addActionListener(e -> onCancel());
 
         setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);

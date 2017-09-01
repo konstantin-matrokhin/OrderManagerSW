@@ -7,7 +7,6 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import org.kvlt.shop.OrderManager;
-import org.kvlt.shop.org.kvlt.shop.utils.Log;
 
 import javax.swing.*;
 import java.awt.*;
@@ -57,7 +56,6 @@ public class ReferralsForm extends JDialog {
                 idBuilder.append(item.toString() + ',');
             });
             idBuilder.deleteCharAt(idBuilder.toString().length() - 1);
-            Log.$(idBuilder);
             ResultSet refDataset = s.executeQuery("SELECT * FROM clients WHERE id IN (" + idBuilder.toString() + ")");
             while (refDataset.next()) {
                 int currentId = refDataset.getInt("id");

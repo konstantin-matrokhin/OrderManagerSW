@@ -23,8 +23,14 @@ public class OrdersForm extends JFrame {
         Dimension size = new Dimension(W, H);
         setPreferredSize(size);
         setSize(size);
-
         setLocationRelativeTo(null);
+
+        btnAdd.addActionListener(e -> {
+            AddGoods addGoods = new AddGoods(this, id);
+            addGoods.pack();
+            addGoods.setVisible(true);
+        });
+
     }
 
     {
