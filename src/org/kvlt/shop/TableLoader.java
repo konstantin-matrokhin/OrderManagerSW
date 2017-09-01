@@ -4,7 +4,6 @@ import org.kvlt.shop.org.kvlt.shop.gui.ButtonColumn;
 import org.kvlt.shop.org.kvlt.shop.gui.OrdersForm;
 import org.kvlt.shop.org.kvlt.shop.gui.ReferralsForm;
 import org.kvlt.shop.org.kvlt.shop.gui.TableForm;
-import org.kvlt.shop.org.kvlt.shop.utils.Log;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -42,10 +41,13 @@ public class TableLoader {
     TableLoader() {
         tableForm = new TableForm();
         db = OrderManager.getDB();
+
         initTable();
         initBtnActions();
         loadDB();
+
         ClientSearch clientSearch = new ClientSearch(tableForm);
+
         tableForm.getBtnSearch().addActionListener(clientSearch.listener());
         tableForm.getBtnClear().addActionListener(clientSearch.clearListener());
         tableForm.getTablePane().registerKeyboardAction(clientSearch.listener(), KeyStroke.getKeyStroke(KeyEvent.VK_ENTER, 0), JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
@@ -59,6 +61,7 @@ public class TableLoader {
                 OrdersForm form = new OrdersForm(id);
                 form.pack();
                 form.setVisible(true);
+
             }
         }, REFERRAL_BUTTON_COLUMN);
         new ButtonColumn(tableForm.getTable(), new AbstractAction() {
@@ -70,6 +73,7 @@ public class TableLoader {
                 refForm.setVisible(true);
             }
         }, ORDERS_BUTTON_COLUMN);
+
         new ButtonColumn(tableForm.getTable(), new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent event) {
@@ -87,6 +91,7 @@ public class TableLoader {
                 }
             }
         }, SOCIAL_BUTTON_COLUMN);
+
     }
 
     private void initTable() {
@@ -133,7 +138,8 @@ public class TableLoader {
                 TableColumnModel columnModel = getTableForm().getTable().getColumnModel();
                 columnModel.getColumn(0).setPreferredWidth(10);
                 columnModel.getColumn(1).setPreferredWidth(150);
-                Log.$("База данных обновлена!");
+                //TODO: remove all logs
+                /*Log.$("База данных обновлена!");*/
             } catch (SQLException e) {
                 e.printStackTrace();
             }

@@ -24,7 +24,11 @@ public class AddGoods extends JDialog {
     private static final int W = 280;
     private static final int H = 235;
 
+    private int id;
+
     public AddGoods(JFrame parent, int id) {
+        this.id = id;
+
         setContentPane(contentPane);
         setModal(true);
         setSize(new Dimension(W, H));
@@ -61,7 +65,7 @@ public class AddGoods extends JDialog {
             JOptionPane.showMessageDialog(null, "Заполните все нужные поля!");
             return;
         } else {
-            Goods goods = new Goods(name, price, article, discount, type);
+            Goods goods = new Goods(id, name, price, article, discount, type);
             goods.save();
         }
         dispose();

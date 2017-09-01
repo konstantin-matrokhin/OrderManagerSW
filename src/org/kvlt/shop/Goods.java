@@ -1,6 +1,8 @@
 package org.kvlt.shop;
 
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
 
 public class Goods {
 
@@ -9,8 +11,10 @@ public class Goods {
     private int article;
     private String discount;
     private GoodsType type;
+    private int id;
 
-    public Goods(String name, double cost, int article, String discount, GoodsType type) {
+    public Goods(int id, String name, double cost, int article, String discount, GoodsType type) {
+        this.id = id;
         this.name = name;
         this.cost = cost;
         this.article = article;
@@ -20,11 +24,23 @@ public class Goods {
 
     public void save() {
         JSONObject j = new JSONObject();
+        JSONArray jsonArray = new JSONArray();
+        String oldOrders = null;
+        try {
+            oldOrders = OrderManager.getDB().getConnection().createStatement().executeQuery("" +
+                    "SELECT orders FROM clients WHERE id=" + id).getString("orders");
+            j = (JSONObject) new JSONParser().parse(oldOrders);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         j.put("name", name);
         j.put("cost", cost);
         j.put("article", article);
         j.put("discount", discount);
         j.put("type", type.toString());
+        String orders = j.toJSONString();
+        OrderManager.getDB().query("UPDATE clients SET orders='" + orders + "' WHERE id=" + id);
     }
 
     public String getName() {
