@@ -67,13 +67,9 @@ public class AdditionForm extends JDialog {
             addGoods.setVisible(true);
         });
 
-        buttonOK.addActionListener(e -> {
-            onOK(cid, action);
-        });
+        buttonOK.addActionListener(e -> onOK(cid, action));
 
-        buttonCancel.addActionListener(e -> {
-            onCancel();
-        });
+        buttonCancel.addActionListener(e -> onCancel());
 
         addWindowListener(new WindowAdapter() {
             public void windowClosing(WindowEvent e) {
@@ -81,9 +77,8 @@ public class AdditionForm extends JDialog {
             }
         });
 
-        contentPane.registerKeyboardAction(e -> {
-            onCancel();
-        }, KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
+        contentPane.registerKeyboardAction(e -> onCancel(),
+                KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
     }
 
     private void addClient(int id, boolean edit) {

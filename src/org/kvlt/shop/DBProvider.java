@@ -11,8 +11,6 @@ public class DBProvider {
 
     public static final String TABLE_NAME = "clients";
 
-    private String driver;
-
     private String url;
     private String host;
     private String port;
@@ -23,8 +21,7 @@ public class DBProvider {
     private Connection conn;
 
     public DBProvider() {
-
-        driver = OMSettings.$().getProperty("driver");
+        String driver = OMSettings.$().getProperty("driver");
         db = OMSettings.$().getProperty("db");
 
         if (driver.equalsIgnoreCase("sqlite")) {
@@ -41,7 +38,7 @@ public class DBProvider {
 
     private void initDB() {
         try {
-            conn.createStatement().executeQuery("" +
+            conn.createStatement().execute("" +
                     "CREATE TABLE IF NOT EXISTS [" + TABLE_NAME + "] (\n" +
                     "[id] INTEGER  PRIMARY KEY AUTOINCREMENT NOT NULL,\n" +
                     "[name] VARCHAR(100)  NOT NULL,\n" +
@@ -52,9 +49,9 @@ public class DBProvider {
                     "[code] VARCHAR(32)  UNIQUE NOT NULL,\n" +
                     "[card] VARCHAR(24) UNIQUE NOT NULL,\n" +
                     "[social] VARCHAR(64)  NULL\n" +
-                    ")").close();
+                    ")");
         } catch (Exception e) {
-
+            e.printStackTrace();
         }
     }
 
@@ -64,7 +61,7 @@ public class DBProvider {
                     "INSERT INTO [clients] (id, name, number, address, code) VALUES" +
                     "(1, 'toster username', '8768532423423', 'default city', '5001ab')").close();
         } catch (Exception e) {
-
+            e.printStackTrace();
         }
     }
 

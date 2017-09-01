@@ -31,9 +31,7 @@ public class ReferralsForm extends JDialog {
 
         listModel = (DefaultListModel) referralsList.getModel();
 
-        buttonOK.addActionListener(e -> {
-            onOK();
-        });
+        buttonOK.addActionListener(e -> onOK());
 
         try {
             loadReferralsList(id);

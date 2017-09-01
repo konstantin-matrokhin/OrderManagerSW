@@ -31,33 +31,28 @@ public class TableLoader {
             "Соц. сеть"
     };
 
-    private static final int REFERAL_BUTTON_COLUMN = 3;
+    private static final int REFERRAL_BUTTON_COLUMN = 3;
     private static final int ORDERS_BUTTON_COLUMN  = 5;
     private static final int SOCIAL_BUTTON_COLUMN  = 8;
 
     private TableForm tableForm;
     private DBProvider db;
     private DefaultTableModel model;
-    private ClientSearch clientSearch;
 
-    public TableLoader() {
+    TableLoader() {
         tableForm = new TableForm();
         db = OrderManager.getDB();
         initTable();
         initBtnActions();
         loadDB();
-        clientSearch = new ClientSearch(tableForm);
+        ClientSearch clientSearch = new ClientSearch(tableForm);
         tableForm.getBtnSearch().addActionListener(clientSearch.listener());
         tableForm.getBtnClear().addActionListener(clientSearch.clearListener());
-        tableForm.getTablePane().registerKeyboardAction(getClientSearch().listener(), KeyStroke.getKeyStroke(KeyEvent.VK_ENTER, 0), JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
-    }
-
-    public ClientSearch getClientSearch() {
-        return clientSearch;
+        tableForm.getTablePane().registerKeyboardAction(clientSearch.listener(), KeyStroke.getKeyStroke(KeyEvent.VK_ENTER, 0), JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
     }
 
     private void initBtnActions() {
-        ButtonColumn viewOrders = new ButtonColumn(tableForm.getTable(), new AbstractAction() {
+        new ButtonColumn(tableForm.getTable(), new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 int id = (Integer) getTableForm().getTable().getValueAt(getTableForm().getTable().getSelectedRow(), 0);
@@ -65,8 +60,8 @@ public class TableLoader {
                 form.pack();
                 form.setVisible(true);
             }
-        }, REFERAL_BUTTON_COLUMN);
-        ButtonColumn viewReferals = new ButtonColumn(tableForm.getTable(), new AbstractAction() {
+        }, REFERRAL_BUTTON_COLUMN);
+        new ButtonColumn(tableForm.getTable(), new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 int id = (Integer) getTableForm().getTable().getValueAt(getTableForm().getTable().getSelectedRow(), 0);
@@ -75,7 +70,7 @@ public class TableLoader {
                 refForm.setVisible(true);
             }
         }, ORDERS_BUTTON_COLUMN);
-        ButtonColumn viewSocial = new ButtonColumn(tableForm.getTable(), new AbstractAction() {
+        new ButtonColumn(tableForm.getTable(), new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent event) {
                 String link = (String) getTableForm().getTable().getValueAt(
@@ -96,7 +91,7 @@ public class TableLoader {
         model = new DefaultTableModel() {
             @Override
             public boolean isCellEditable(int row, int col) {
-                return (   col == REFERAL_BUTTON_COLUMN
+                return (   col == REFERRAL_BUTTON_COLUMN
                         || col == ORDERS_BUTTON_COLUMN
                         || col == SOCIAL_BUTTON_COLUMN);
             }

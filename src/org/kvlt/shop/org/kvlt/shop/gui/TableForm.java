@@ -25,7 +25,6 @@ public class TableForm extends JFrame {
     private JButton btnRemove;
     private JButton btnEdit;
     private JButton btnClear;
-    private JButton btnRefresh;
 
     public TableForm() {
         $$$setupUI$$$();
@@ -43,7 +42,7 @@ public class TableForm extends JFrame {
         setLocationRelativeTo(null);
         setTitle(TITLE);
         setMinimumSize(paneDim);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setVisible(true);
 
         registerListeners();
@@ -105,7 +104,7 @@ public class TableForm extends JFrame {
     }
 
     private void createUIComponents() {
-        // TODO: place custom component creation code here
+
     }
 
     /**

@@ -10,14 +10,12 @@ import java.awt.event.ActionListener;
 public class ClientSearch {
 
     private TableForm tableForm;
-    private TableModel model;
     private TableRowSorter<TableModel> sorter;
     private String searchText;
 
     public ClientSearch(TableForm tableForm) {
         this.tableForm = tableForm;
-        model = this.tableForm.getTable().getModel();
-        sorter = new TableRowSorter<>(model);
+        sorter = new TableRowSorter<>(this.tableForm.getTable().getModel());
 
         this.tableForm.getTable().setRowSorter(sorter);
     }

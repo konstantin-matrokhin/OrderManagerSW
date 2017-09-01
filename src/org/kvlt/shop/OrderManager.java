@@ -2,8 +2,13 @@ package org.kvlt.shop;
 
 public class OrderManager {
 
-    private static DBProvider db = new DBProvider();
-    private static TableLoader tableLoader = new TableLoader();
+    private static DBProvider db;
+    private static TableLoader tableLoader;
+
+    static {
+        db = new DBProvider();
+        tableLoader = new TableLoader();
+    }
 
     public static DBProvider getDB() {
         return db;

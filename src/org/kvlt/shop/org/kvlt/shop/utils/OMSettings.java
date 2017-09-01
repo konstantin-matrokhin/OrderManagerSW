@@ -7,12 +7,11 @@ import java.util.Properties;
 public class OMSettings {
 
     private Properties props;
-    private String fileName = "config";
-    private String defaultsName = "defaults";
-
     private static OMSettings instance;
 
     public OMSettings() {
+        String defaultsName = "defaults";
+        String fileName = "config";
         try {
             File file = new File(fileName);
             File defaultsFile = new File(defaultsName);
