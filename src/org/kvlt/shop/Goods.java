@@ -24,22 +24,24 @@ public class Goods {
 
     public void save() {
         JSONObject j = new JSONObject();
-        JSONArray jsonArray = new JSONArray();
-        String oldOrders = null;
+        JSONArray arr = null;
+        String oldOrders;
         try {
             oldOrders = OrderManager.getDB().getConnection().createStatement().executeQuery("" +
                     "SELECT orders FROM clients WHERE id=" + id).getString("orders");
-            j = (JSONObject) new JSONParser().parse(oldOrders);
 
+            arr = oldOrders.isEmpty() ? new JSONArray() : (JSONArray) new JSONParser().parse(oldOrders);
         } catch (Exception e) {
             e.printStackTrace();
         }
-        j.put("name", name);
-        j.put("cost", cost);
-        j.put("article", article);
-        j.put("discount", discount);
-        j.put("type", type.toString());
-        String orders = j.toJSONString();
+        JSONObject tObj = new JSONObject();
+        tObj.put("name", name);
+        tObj.put("cost", cost);
+        tObj.put("article", article);
+        tObj.put("discount", discount);
+        tObj.put("type", type.toString());
+        arr.add(tObj);
+        String orders = arr.toJSONString();
         OrderManager.getDB().query("UPDATE clients SET orders='" + orders + "' WHERE id=" + id);
     }
 
