@@ -30,7 +30,7 @@ public class Goods {
             oldOrders = OrderManager.getDB().getConnection().createStatement().executeQuery("" +
                     "SELECT orders FROM clients WHERE id=" + id).getString("orders");
 
-            arr = oldOrders.isEmpty() ? new JSONArray() : (JSONArray) new JSONParser().parse(oldOrders);
+            arr = (oldOrders == null || oldOrders.isEmpty()) ? new JSONArray() : (JSONArray) new JSONParser().parse(oldOrders);
         } catch (Exception e) {
             e.printStackTrace();
         }

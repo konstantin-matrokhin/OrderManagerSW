@@ -38,7 +38,7 @@ public class TableLoader {
     private DBProvider db;
     private DefaultTableModel model;
 
-    TableLoader() {
+    public TableLoader() {
         tableForm = new TableForm();
         db = OrderManager.getDB();
 

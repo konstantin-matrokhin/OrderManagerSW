@@ -3,22 +3,38 @@ package org.kvlt.shop.org.kvlt.shop.gui;
 import com.intellij.uiDesigner.core.GridConstraints;
 import com.intellij.uiDesigner.core.GridLayoutManager;
 import com.intellij.uiDesigner.core.Spacer;
+import org.json.simple.JSONArray;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
+import org.kvlt.shop.OrderManager;
 
 import javax.swing.*;
 import java.awt.*;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 public class OrdersForm extends JFrame {
 
     private static final int W = 328;
     private static final int H = 190;
 
+    private static final String[] TITLES = {
+            "Название",
+            "Артикул",
+            "Цена",
+            "Скидка",
+            "Тип товара"
+    };
+
     private JTable tableOrders;
     private JButton btnCancel;
     private JButton btnAdd;
     private JButton btnRemove;
     private JPanel pane;
+    private int id;
 
     public OrdersForm(int id) {
+        this.id = id;
         setContentPane(pane);
         Dimension size = new Dimension(W, H);
         setPreferredSize(size);
@@ -31,6 +47,26 @@ public class OrdersForm extends JFrame {
             addGoods.setVisible(true);
         });
 
+    }
+
+    /* *
+    *  Loads data from orders column
+    * */
+    public void refresh() {
+         try {
+             Statement s = OrderManager.getDB().getConnection().createStatement();
+             String ordersRaw = s.executeQuery(
+                     "SELECT orders FROM clients WHERE id=" + this.id)
+                     .getString("orders");
+
+             if (ordersRaw == null || ordersRaw.isEmpty()) {
+                 return;
+             }
+
+             JSONArray orders = (JSONArray) new JSONParser().parse(ordersRaw);
+        } catch (SQLException | ParseException e) {
+            e.printStackTrace();
+        }
     }
 
     {
