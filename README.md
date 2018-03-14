@@ -1,1 +1,3 @@
-### ОЧЕНЬ ПЛОХОЙ КОД, НЕ ЧИТАТЬ
+### Decompile works fine, morron
+
+xswingx.jar
